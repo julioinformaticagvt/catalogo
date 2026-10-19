@@ -41,7 +41,10 @@ que não funciona abrindo o arquivo direto.
 1. **Nada sigiloso nos arquivos.** O código do site é público. Nunca colocar preço, custo, quantidade
    em estoque, dados de cliente, senha ou chave de acesso. O catálogo só tem nome, foto, descrição e
    `disponivel: true/false`.
-2. O número de WhatsApp de exemplo (`5548900000000`) deve ser trocado pelo número real em `js/config.js`.
+2. O número de WhatsApp em `js/config.js` já é o real da loja. O nome da marca é **"Jul1o Informática"**
+   (com o número 1, de propósito): não "corrigir" para Júlio.
+   Site publicado em https://julioinformaticagvt.github.io/catalogo/ (repositório
+   `julioinformaticagvt/catalogo`). O `404.html` usa caminhos começando com `/catalogo/`.
 3. Só o dono altera o catálogo (quem tem acesso ao repositório). A página não tem nenhuma função de editar.
 4. Este projeto é **separado** do sistema de gestão financeira. Não misturar código nem repositório.
 5. Usar sempre `esc()` ao colocar texto de produto no HTML (evita quebrar a página).

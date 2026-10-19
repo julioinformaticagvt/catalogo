@@ -22,11 +22,11 @@ vê se está disponível e chama no WhatsApp. Sem preço.
 - [x] Funciona abrindo o arquivo direto e no GitHub Pages
 
 ## 3. Pendências do dono (sem código)
-- [ ] Trocar o número de WhatsApp em `js/config.js`
+- [x] Trocar o número de WhatsApp em `js/config.js`
 - [ ] Preencher instagram, cidade e horário em `js/config.js` (ou deixar vazio)
 - [ ] Cadastrar de 10 a 20 produtos reais em `dados/produtos.js`, com fotos em `img/`
-- [ ] Publicar no GitHub Pages (repositório separado, ex.: `catalogo`)
-- [ ] Depois de publicar, trocar `img/og.jpg` no `index.html` pelo endereço completo da imagem
+- [x] Publicar no GitHub Pages: https://julioinformaticagvt.github.io/catalogo/
+- [x] Depois de publicar, trocar `img/og.jpg` no `index.html` pelo endereço completo da imagem
   (WhatsApp e Instagram pedem o endereço completo para mostrar a prévia)
 - [ ] Colocar o link na bio do Instagram, no Google Meu Negócio e no WhatsApp Business
 
