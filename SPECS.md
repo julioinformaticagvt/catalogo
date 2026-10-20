@@ -23,14 +23,17 @@ vê se está disponível e chama no WhatsApp. Sem preço.
 
 ## 3. Pendências do dono (sem código)
 - [x] Trocar o número de WhatsApp em `js/config.js`
-- [ ] Preencher instagram, cidade e horário em `js/config.js` (ou deixar vazio)
-- [ ] Cadastrar de 10 a 20 produtos reais em `dados/produtos.js`, com fotos em `img/`
+- [x] Preencher instagram e cidade em `js/config.js` (horário: opcional, ainda vazio)
+- [ ] Cadastrar de 10 a 20 produtos reais (agora pelo sistema de gestão, botão "Mandar para o catálogo")
 - [x] Publicar no GitHub Pages: https://julioinformaticagvt.github.io/catalogo/
 - [x] Depois de publicar, trocar `img/og.jpg` no `index.html` pelo endereço completo da imagem
   (WhatsApp e Instagram pedem o endereço completo para mostrar a prévia)
 - [ ] Colocar o link na bio do Instagram, no Google Meu Negócio e no WhatsApp Business
 
 ## 4. Próximos passos (a implementar)
+
+> **Feito (4.1 e 4.2):** implementado no sistema de gestão, versão 0.17.0 (botão "Mandar para o catálogo",
+> envio automático ao GitHub). O sistema grava só `dados/produtos.js` e `img/produtos/`.
 
 ### 4.1 Botão "Publicar catálogo" no sistema de gestão  (prioridade alta)
 No **sistema de gestão** (outro projeto), em Configurações:
