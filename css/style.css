@@ -64,6 +64,7 @@ a { color: inherit; }
 .btn.ghost:hover { border-color: var(--cyan); background: var(--surface); }
 .btn.sm { min-height: 38px; padding: 0 14px; font-size: 0.9rem; }
 .ico { width: 18px; height: 18px; flex: none; }
+.ico.wa { width: 20px; height: 20px; }   /* logo colorido do WhatsApp */
 
 /* ---------- Topo ---------- */
 .top { position: relative; z-index: 5; border-bottom: 1px solid var(--line); background: var(--bg); }
@@ -234,7 +235,8 @@ a { color: inherit; }
 .card h3 button:hover { text-decoration: underline; text-underline-offset: 3px; }
 .desc { margin: 0; color: var(--muted); font-size: 0.88rem; display: none; }
 .card-body > .btn { margin-top: auto; min-height: 42px; font-size: 0.88rem; padding: 6px 10px; line-height: 1.2; text-align: center; }
-.card-body > .btn .ico { display: none; }
+.card-body > .btn { gap: 6px; }
+.card-body > .btn .ico.wa { width: 16px; height: 16px; }
 
 /* ---------- Vazio ---------- */
 .empty { text-align: center; padding: 56px 16px 72px; border: 1px dashed var(--line); border-radius: var(--radius); margin-bottom: 48px; }
@@ -246,7 +248,7 @@ a { color: inherit; }
 .servicos h2 { font-size: 1.4rem; margin-bottom: 16px; }
 .servicos ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .servicos a {
-  display: inline-block; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
   border: 1px solid var(--line); border-radius: 10px; padding: 9px 14px; background: var(--bg); font-size: 0.95rem;
   transition: border-color .15s, box-shadow .15s;
 }
@@ -266,10 +268,10 @@ a { color: inherit; }
   position: fixed; right: 16px; bottom: 16px; z-index: 20;
   width: 56px; height: 56px; border-radius: 50%;
   display: grid; place-items: center;
-  background: var(--cyan); color: var(--accent-ink);
+  background: #25D366;
   box-shadow: 3px 3px 0 var(--magenta), 0 6px 20px rgba(0,0,0,.5);
 }
-.fab svg { width: 26px; height: 26px; }
+.fab .ico.wa { width: 100%; height: 100%; }   /* o próprio logo verde preenche o botão */
 body.tem-lista .fab { display: none; }
 
 .topo {
@@ -348,7 +350,7 @@ dialog::backdrop { background: rgba(4,4,6,.78); backdrop-filter: blur(3px); }
 
 /* ---------- Telas maiores ---------- */
 @media (min-width: 640px) {
-  .card-body > .btn .ico { display: block; }
+  .card-body > .btn .ico.wa { width: 18px; height: 18px; }
   .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
   .desc { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   .card-body { padding: 14px 14px 16px; gap: 8px; }
