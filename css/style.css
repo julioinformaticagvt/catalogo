@@ -310,8 +310,39 @@ dialog::backdrop { background: rgba(4,4,6,.78); backdrop-filter: blur(3px); }
   background: rgba(10,10,12,.88); color: var(--text); font-size: 1.5rem; line-height: 1;
 }
 .m-gal { background: var(--photo-bg); display: flex; flex-direction: column; justify-content: center; }
-.m-main { aspect-ratio: 4 / 3; }
-.m-main img { width: 100%; height: 100%; object-fit: contain; padding: 16px; mix-blend-mode: multiply; }
+.m-main { aspect-ratio: 4 / 3; position: relative; display: block; width: 100%; border: 0; padding: 0; background: none; }
+button.m-main { cursor: zoom-in; }
+.m-main img { width: 100%; height: 100%; object-fit: contain; padding: 8px; mix-blend-mode: multiply; }
+.m-lupa {
+  position: absolute; right: 10px; bottom: 10px; display: inline-flex; align-items: center; gap: 4px;
+  background: rgba(10,10,12,.82); color: var(--text); font-size: 0.8rem; font-weight: 600;
+  padding: 5px 10px 5px 7px; border-radius: 999px; pointer-events: none;
+}
+
+/* Foto ampliada: tela cheia, fundo claro como o das fotos */
+dialog.zoom {
+  width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0;
+  border: 0; border-radius: 0; background: var(--photo-bg); overflow: hidden;
+}
+.zoom img {
+  width: 100%; height: 100%; object-fit: contain; padding: 12px;
+  cursor: zoom-in; touch-action: manipulation; user-select: none; -webkit-user-drag: none;
+  transition: transform .2s;
+}
+.zoom.perto img { transform: scale(2.5); cursor: zoom-out; touch-action: none; transition: none; }
+.z-nav {
+  position: absolute; top: 50%; translate: 0 -50%; display: none;
+  width: 44px; height: 44px; border-radius: 50%; border: 0; cursor: pointer;
+  background: rgba(10,10,12,.82); color: var(--text); font-size: 1.8rem; line-height: 1;
+}
+.zoom.varias .z-nav { display: grid; place-items: center; }
+.zoom.perto .z-nav { display: none; }
+.z-prev { left: 10px; }
+.z-next { right: 10px; }
+.z-dica {
+  position: absolute; left: 50%; bottom: 16px; translate: -50% 0; margin: 0; pointer-events: none;
+  background: rgba(10,10,12,.82); color: var(--text); font-size: 0.85rem; padding: 6px 12px; border-radius: 999px; white-space: nowrap;
+}
 .m-thumbs { display: flex; gap: 8px; padding: 0 12px 12px; overflow-x: auto; }
 .m-thumbs button { flex: none; width: 56px; height: 56px; border: 2px solid transparent; border-radius: 8px; background: #fff; padding: 2px; cursor: pointer; }
 .m-thumbs button[aria-current="true"] { border-color: var(--magenta); }

@@ -136,6 +136,15 @@
     <div class="m-in" id="modal-conteudo"></div>
   </dialog>
 
+  <!-- Foto ampliada (abre ao tocar na foto do produto) -->
+  <dialog id="zoom-dlg" class="zoom" aria-label="Foto ampliada">
+    <img id="zoom-img" alt="">
+    <button type="button" class="m-close" data-zfechar aria-label="Fechar foto">&times;</button>
+    <button type="button" class="z-nav z-prev" data-zpasso="-1" aria-label="Foto anterior">&#8249;</button>
+    <button type="button" class="z-nav z-next" data-zpasso="1" aria-label="Próxima foto">&#8250;</button>
+    <p class="z-dica" id="zoom-dica">Toque na foto para aproximar</p>
+  </dialog>
+
   <dialog id="lista-dlg" aria-labelledby="l-titulo">
     <div class="l-in" id="lista-conteudo"></div>
   </dialog>
