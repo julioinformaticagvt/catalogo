@@ -4,9 +4,10 @@
    Sem preço, custo ou quantidade em estoque, de propósito.
    ============================================================ */
 
-window.CATALOGO_ATUALIZADO = "2026-10-22";
+window.CATALOGO_ATUALIZADO = "2026-10-23";
 
 window.CATALOGO_PRODUTOS = [
+  {"id":"prd_3d21da1b5780","nome":"Controladora Argb 5v 3pinos","marca":"","categoria":"Periféricos","descricao":"Controladora Argb 5v 3 Pinos Para PC Gamer Led Endereçável + Controle Remoto","especificacoes":[],"imagens":["img/produtos/prd_3d21da1b5780-1.jpg","img/produtos/prd_3d21da1b5780-2.jpg","img/produtos/prd_3d21da1b5780-3.jpg"],"disponivel":true,"destaque":false,"novo":false,"condicao":""},
   {"id":"prd_a938cc099d6c","nome":"Controle BSP G6 Sem fio (dongle, bluetooh e usb) PRETO","marca":"BSP","categoria":"Periféricos","descricao":"Controle gamer sem fio (possui dongle usb) com joysticks e gatilhos de alta precisão, vibração ajustável e giroscópio integrado, ideal para jogar no PC, Nintendo Switch e dispositivos móveis.","especificacoes":[["Conectividade","Bluetooth, USB-C e Dongle"],["Joysticks","Hall Effect"],["Recursos","Giroscópio de 6 eixos e vibração dupla"],["Compatibilidade","PC, Nintendo Switch, Android e iOS"]],"imagens":["img/produtos/prd_a938cc099d6c-1.jpg"],"disponivel":true,"destaque":false,"novo":false,"condicao":""},
   {"id":"prd_da7334ec2079","nome":"Formatação com Backup","marca":"","categoria":"Serviços","descricao":"Formatação com backup de dados separados pelo cliente. Como fotos, vídeos, documentos...","especificacoes":[],"imagens":["img/produtos/prd_da7334ec2079-1.jpg"],"disponivel":true,"destaque":false,"novo":false,"condicao":""},
   {"id":"prd_50bf1d10d733","nome":"Formatação limpa","marca":"","categoria":"Serviços","descricao":"Esta é uma formatação limpa sem backup. Seu sistema operacional novinho!\n(POR PADRÃO COLOCAMOS O WINDOWS 10 PRO)","especificacoes":[],"imagens":["img/produtos/prd_50bf1d10d733-1.jpg"],"disponivel":true,"destaque":false,"novo":false,"condicao":""},
