@@ -70,6 +70,8 @@
     var t = e.target;
     if (t && t.tagName === "IMG" && t.src !== PLACEHOLDER && !t.hasAttribute("data-no-fallback")) {
       t.src = PLACEHOLDER;
+      // Na janela do produto: sem foto, sem o selo "Ampliar"
+      if (t.id === "m-foto" && t.parentNode) t.parentNode.classList.add("sem-foto");
     }
   }, true);
 
@@ -130,6 +132,11 @@
       var id = b.getAttribute("data-lista") || (b.closest("[data-id]") || {}).getAttribute && b.closest("[data-id]").getAttribute("data-id");
       var marcado = naLista(id);
       b.setAttribute("aria-pressed", String(marcado));
+      if (b.classList.contains("add")) {   // botão "+" do card: o texto lido pelo leitor de tela acompanha
+        var p = achar(id);
+        b.setAttribute("aria-label", (marcado ? "Remover da lista de interesse: " : "Adicionar à lista de interesse: ") + (p ? p.nome : ""));
+        b.title = marcado ? "Remover da lista" : "Adicionar à lista";
+      }
       if (b.classList.contains("btn")) {
         b.classList.toggle("on", marcado);
         var t = b.querySelector("span");
@@ -242,7 +249,9 @@
         "</button>" +
         '<span class="pill ' + corSelo(p) + '"><i></i>' + selo(p) + "</span>" +
         etiquetas(p) +
-        '<button type="button" class="add" data-lista="' + esc(p.id) + '" aria-pressed="' + naLista(p.id) + '" aria-label="Adicionar à lista de interesse: ' + esc(p.nome) + '" title="Adicionar à lista">' + ICONE_ADD + "</button>" +
+        '<button type="button" class="add" data-lista="' + esc(p.id) + '" aria-pressed="' + naLista(p.id) + '" aria-label="' +
+          (naLista(p.id) ? "Remover da lista de interesse: " : "Adicionar à lista de interesse: ") + esc(p.nome) + '" title="' +
+          (naLista(p.id) ? "Remover da lista" : "Adicionar à lista") + '">' + ICONE_ADD + "</button>" +
       "</div>" +
       '<div class="card-body">' +
         (p.marca ? '<p class="marca">' + esc(p.marca) + "</p>" : "") +
@@ -339,11 +348,13 @@
     if (e.target.closest("[data-fechar]")) return fecharProduto();
     var thumb = e.target.closest("[data-foto]");
     if (thumb) {
+      $("#m-foto").parentNode.classList.remove("sem-foto");
       $("#m-foto").src = thumb.getAttribute("data-foto");
       modal.querySelectorAll("[data-foto]").forEach(function (b) { b.setAttribute("aria-current", String(b === thumb)); });
       return;
     }
-    if (e.target.closest("[data-zoom]") && produtoAberto) {
+    var z = e.target.closest("[data-zoom]");
+    if (z && produtoAberto && !z.classList.contains("sem-foto")) {
       var fotos = imagensDe(produtoAberto);
       abrirZoom(fotos, Math.max(0, fotos.indexOf($("#m-foto").getAttribute("src"))));
       return;
@@ -551,6 +562,10 @@
   lerLista();
   preencherTextos();
   $("#busca").value = estado.q;
+  // Link antigo com uma categoria que não existe mais: mostra todos os produtos
+  if (estado.cat && !PRODUTOS.some(function (p) { return estado.cat === NOVIDADES ? p.novo : p.categoria === estado.cat; })) {
+    estado.cat = ""; gravarURL();
+  }
   desenharChips();
   ligarEventos();
   desenhar();

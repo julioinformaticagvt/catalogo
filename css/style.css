@@ -299,7 +299,7 @@ body.tem-lista .topo { bottom: 84px; }
 
 /* ---------- Janelas (produto e lista) ---------- */
 dialog {
-  width: min(880px, 100% - 24px); max-height: calc(100dvh - 24px);
+  width: min(880px, 100% - 24px); max-height: calc(100vh - 24px); max-height: calc(100dvh - 24px);   /* 100vh: celular antigo */
   padding: 0; border: 1px solid var(--line); border-radius: 18px;
   background: var(--surface); color: var(--text); overflow: auto;
 }
@@ -314,6 +314,8 @@ dialog::backdrop { background: rgba(4,4,6,.78); backdrop-filter: blur(3px); }
 .m-main { aspect-ratio: 4 / 3; position: relative; display: block; width: 100%; border: 0; padding: 0; background: none; }
 button.m-main { cursor: zoom-in; }
 .m-main img { width: 100%; height: 100%; object-fit: contain; padding: 8px; mix-blend-mode: multiply; }
+.sem-foto .m-lupa { display: none; }
+button.m-main.sem-foto { cursor: default; }
 .m-lupa {
   position: absolute; right: 10px; bottom: 10px; display: inline-flex; align-items: center; gap: 4px;
   background: rgba(10,10,12,.82); color: var(--text); font-size: 0.8rem; font-weight: 600;
@@ -322,7 +324,7 @@ button.m-main { cursor: zoom-in; }
 
 /* Foto ampliada: tela cheia, fundo claro como o das fotos */
 dialog.zoom {
-  width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0;
+  width: 100vw; height: 100vh; height: 100dvh; max-width: none; max-height: none; margin: 0;
   border: 0; border-radius: 0; background: var(--photo-bg); overflow: hidden;
 }
 .zoom img {
