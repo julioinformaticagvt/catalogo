@@ -23,7 +23,10 @@ que não funciona abrindo o arquivo direto.
 ## Estrutura
 - `index.html` - estrutura da página
 - `css/style.css` - visual. Cores e fontes no bloco `:root` no começo
-- `js/config.js` - dados da loja, textos e mensagens do WhatsApp (o dono edita aqui)
+- `js/config.js` - dados da loja, textos e mensagens do WhatsApp (o dono edita aqui).
+  Categorias: **Periféricos** = mouse, teclado, headset etc.; **Acessórios** = itens não essenciais
+  (suportes, teclas diferentes para teclado etc.); **PC** = computador montado. A lista do sistema de gestão
+  (Configurações) precisa ter os mesmos nomes, escritos igual.
 - `js/app.js` - lógica (busca, filtros, lista de interesse, janelas)
 - `dados/produtos.js` - lista de produtos (hoje são exemplos)
 - `img/` - logo, tijolos, ícones, imagem de prévia e fotos dos produtos
