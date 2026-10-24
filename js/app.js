@@ -35,11 +35,22 @@
   function waLink(msg) {
     return "https://wa.me/" + String(CFG.whatsapp || "").replace(/\D/g, "") + "?text=" + encodeURIComponent(msg);
   }
+  // Serviços (formatação, limpeza...) que o sistema manda junto com os produtos, na categoria "Serviços"
+  function eServico(p) { return p.categoria === "Serviços"; }
   function msgProduto(p) {
+    if (eServico(p)) {
+      return String(CFG.mensagemServico || "Olá! Gostaria de um orçamento: {servico}").replace("{servico}", function () { return p.nome; });
+    }
     var modelo = p.disponivel ? CFG.mensagemProduto : CFG.mensagemIndisponivel;
-    return String(modelo || "Olá! Tenho interesse em: {produto}").replace("{produto}", p.nome);
+    return String(modelo || "Olá! Tenho interesse em: {produto}").replace("{produto}", function () { return p.nome; });
   }
-  function rotuloBotao(p) { return p.disponivel ? "Chamar no WhatsApp" : "Avisar quando chegar"; }
+  function rotuloBotao(p) {
+    if (eServico(p)) return "Pedir orçamento";
+    return p.disponivel ? "Chamar no WhatsApp" : "Avisar quando chegar";
+  }
+  // Selo do card e da janela: "Serviço", "Disponível" ou "Indisponível no momento"
+  function selo(p) { return eServico(p) ? "Serviço" : p.disponivel ? "Disponível" : "Indisponível no momento"; }
+  function corSelo(p) { return eServico(p) ? "svc" : p.disponivel ? "ok" : "off"; }
 
   /* ---------------- Imagens ---------------- */
   var PLACEHOLDER = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(
@@ -140,7 +151,7 @@
       html += "<p>Envie tudo de uma vez no WhatsApp. O valor e o parcelamento a gente passa na conversa.</p>" +
         '<ul class="l-lista">' + itens.map(function (p) {
           return '<li><span class="nome">' + esc(p.nome) +
-            '<span class="st">' + (p.disponivel ? "Disponível" : "Indisponível no momento") + "</span></span>" +
+            '<span class="st">' + selo(p) + "</span></span>" +
             '<button type="button" data-remover="' + esc(p.id) + '" aria-label="Remover ' + esc(p.nome) + ' da lista">&times;</button></li>';
         }).join("") + "</ul>" +
         '<div class="l-actions">' +
@@ -229,7 +240,7 @@
         '<button type="button" class="card-open" data-abrir aria-label="Ver detalhes de ' + esc(p.nome) + '">' +
           '<img src="' + esc(imagensDe(p)[0]) + '" alt="" loading="lazy" decoding="async">' +
         "</button>" +
-        '<span class="pill ' + (disp ? "ok" : "off") + '"><i></i>' + (disp ? "Disponível" : "Indisponível no momento") + "</span>" +
+        '<span class="pill ' + corSelo(p) + '"><i></i>' + selo(p) + "</span>" +
         etiquetas(p) +
         '<button type="button" class="add" data-lista="' + esc(p.id) + '" aria-pressed="' + naLista(p.id) + '" aria-label="Adicionar à lista de interesse: ' + esc(p.nome) + '" title="Adicionar à lista">' + ICONE_ADD + "</button>" +
       "</div>" +
@@ -299,7 +310,7 @@
       '<div class="m-info">' +
         (p.marca ? '<p class="marca">' + esc(p.marca) + "</p>" : "") +
         '<h2 id="m-titulo">' + esc(p.nome) + "</h2>" +
-        '<span class="m-status ' + (disp ? "" : "off") + '"><i></i>' + (disp ? "Disponível" : "Indisponível no momento") + "</span>" +
+        '<span class="m-status ' + corSelo(p) + '"><i></i>' + selo(p) + "</span>" +
         (p.descricao ? '<p class="m-desc">' + esc(p.descricao) + "</p>" : "") +
         (specs ? '<dl class="specs">' + specs + "</dl>" : "") +
         '<div class="m-actions">' +
@@ -442,7 +453,7 @@
     // Coloca o logo do WhatsApp nos botões que já vêm escritos no index.html
     ["#top-wa", "#hero-wa", "#vazio-wa", "#fab"].forEach(function (s) { $(s).insertAdjacentHTML("afterbegin", ICONE_WA); });
 
-    var disponiveis = PRODUTOS.filter(function (p) { return p.disponivel; }).length;
+    var disponiveis = PRODUTOS.filter(function (p) { return p.disponivel && !eServico(p); }).length;
     $("#hero-note").textContent = PRODUTOS.length
       ? disponiveis + (disponiveis === 1 ? " produto disponível agora" : " produtos disponíveis agora")
       : "";

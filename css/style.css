@@ -209,6 +209,7 @@ a { color: inherit; }
 .pill i { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); }
 .pill.off { color: #cfcfd8; }
 .pill.off i { background: var(--off); }
+.pill.svc i, .m-status.svc i { background: var(--magenta); }   /* selo "Serviço" */
 .tags { position: absolute; right: 8px; top: 8px; pointer-events: none; display: flex; flex-direction: column; gap: 4px; align-items: flex-end; }
 .tag { background: var(--magenta); color: #14000f; border-radius: 6px; padding: 2px 8px; font-size: 0.72rem; font-weight: 700; }
 .tag.alt { background: var(--bg); color: var(--text); }
