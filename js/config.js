@@ -59,6 +59,7 @@ window.CATALOGO_CONFIG = {
   // Ordem das categorias nos botões de filtro.
   // Se deixar vazio [], elas aparecem em ordem alfabética.
   categorias: [
+    "PC",
     "Placas de vídeo",
     "Processadores",
     "Placas-mãe",
@@ -67,6 +68,8 @@ window.CATALOGO_CONFIG = {
     "Fontes",
     "Gabinetes",
     "Monitores",
-    "Periféricos"
+    "Periféricos",
+    "Console",
+    "Acessórios"
   ]
 };
