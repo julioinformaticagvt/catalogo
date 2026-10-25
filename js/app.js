@@ -350,11 +350,15 @@
     }
   }
 
-  function fecharProduto() { if (modal.open) modal.close(); }
-  modal.addEventListener("close", function () {
+  // Ao fechar o produto, tira o "#id" do endereço (assim o mesmo link pode ser aberto de novo).
+  // Feito na hora (botão X, clique fora, tecla Esc) e de novo no evento "close", por garantia.
+  function limparHash() {
     produtoAberto = null;
-    try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
-  });
+    if (location.hash) { try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {} }
+  }
+  function fecharProduto() { if (modal.open) modal.close(); limparHash(); }
+  modal.addEventListener("cancel", limparHash);   // tecla Esc / botão voltar do Android
+  modal.addEventListener("close", limparHash);
   modal.addEventListener("click", function (e) {
     if (e.target === modal) return fecharProduto();                 // clique fora
     if (e.target.closest("[data-fechar]")) return fecharProduto();
