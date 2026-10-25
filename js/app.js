@@ -194,6 +194,18 @@
         esc(c.rotulo) + " <small>" + c.total + "</small></button>";
     }).join("");
   }
+  function sombraChips() {
+    var c = $("#chips");
+    c.classList.toggle("mais-esq", c.scrollLeft > 4);
+    c.classList.toggle("mais-dir", c.scrollLeft + c.clientWidth < c.scrollWidth - 4);
+  }
+  // Traz a categoria escolhida para o meio da faixa (no celular)
+  function centralizarChip(b) {
+    var c = $("#chips");
+    if (c.scrollWidth <= c.clientWidth) return;
+    var cr = c.getBoundingClientRect(), br = b.getBoundingClientRect();
+    c.scrollTo({ left: c.scrollLeft + (br.left - cr.left) - (c.clientWidth - br.width) / 2, behavior: "smooth" });
+  }
   function marcarChips() {
     document.querySelectorAll(".chip").forEach(function (b) {
       b.setAttribute("aria-pressed", String(b.getAttribute("data-cat") === estado.cat));
@@ -533,7 +545,23 @@
       if (!b) return;
       estado.cat = b.getAttribute("data-cat");
       marcarChips(); gravarURL(); desenhar();
+      centralizarChip(b);
     });
+
+    // Faixa de categorias no celular: esmaece a borda onde ainda tem categoria escondida
+    var chips = $("#chips");
+    chips.addEventListener("scroll", sombraChips, { passive: true });
+    window.addEventListener("resize", sombraChips);
+    // Rodinha do mouse em cima da faixa (quando ela rola para o lado): rola para o lado
+    chips.addEventListener("wheel", function (e) {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      var antes = chips.scrollLeft;
+      chips.scrollLeft += e.deltaY;
+      if (chips.scrollLeft !== antes) e.preventDefault();   // chegou no fim da faixa: deixa a página rolar
+    }, { passive: false });
+    sombraChips();
+    var ativo = chips.querySelector('.chip[aria-pressed="true"]');
+    if (ativo) centralizarChip(ativo);
     $("#so-disp").addEventListener("change", function (e) { estado.soDisp = e.target.checked; desenhar(); });
     $("#ordem").addEventListener("change", function (e) { estado.ordem = e.target.value; desenhar(); });
 

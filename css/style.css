@@ -156,6 +156,10 @@ a { color: inherit; }
 
 .chips { display: flex; gap: 8px; margin-top: 10px; overflow-x: auto; padding: 2px 0; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
 .chips::-webkit-scrollbar { display: none; }
+/* Celular: borda esmaecida avisa que dá para arrastar e ver mais categorias (o app.js liga/desliga) */
+.chips.mais-dir { -webkit-mask-image: linear-gradient(to right, #000 82%, transparent); mask-image: linear-gradient(to right, #000 82%, transparent); }
+.chips.mais-esq { -webkit-mask-image: linear-gradient(to left, #000 82%, transparent); mask-image: linear-gradient(to left, #000 82%, transparent); }
+.chips.mais-esq.mais-dir { -webkit-mask-image: linear-gradient(to right, transparent, #000 18%, #000 82%, transparent); mask-image: linear-gradient(to right, transparent, #000 18%, #000 82%, transparent); }
 .chip {
   flex: none; display: inline-flex; align-items: center; gap: 6px;
   min-height: 36px; padding: 0 14px; border-radius: 999px;
@@ -384,6 +388,7 @@ dialog.zoom {
 
 /* ---------- Telas maiores ---------- */
 @media (min-width: 640px) {
+  .chips { flex-wrap: wrap; }   /* computador: todas as categorias aparecem, em mais de uma linha se precisar */
   .card-body > .btn .ico.wa { width: 20px; height: 20px; }
   .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
   .desc { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
